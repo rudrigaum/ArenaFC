@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct APIResponseLeague: Decodable {
+struct APIResponseLeagues: Decodable {
     let response: [LeagueWrapper]
 }
 

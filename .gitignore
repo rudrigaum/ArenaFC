@@ -45,4 +45,7 @@ xcuserdata
 profile.dSYM
 *.mobileprovision
 
+# Secrets
+Secrets.plist
+
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode

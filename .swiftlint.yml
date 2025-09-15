@@ -1,12 +1,12 @@
-disabled_rules: # Regras que não queremos usar
+disabled_rules:
   - trailing_whitespace
   - line_length
-opt_in_rules: # Regras extras que queremos usar
+opt_in_rules:
   - empty_count
   - force_unwrapping
   - explicit_init
   - closure_spacing
   - private_outlet
-excluded: # Pastas que o SwiftLint deve ignorar
+excluded:
   - Pods
   - Carthage

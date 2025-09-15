@@ -46,6 +46,5 @@ profile.dSYM
 *.mobileprovision
 
 # Secrets
-Info.plist
-
-# End of https://www.toptal.com/developers/gitignore/api/swift,xcode
+# Este arquivo contém a chave da API e NUNCA deve ser enviado para o GitHub.
+ArenaFC/Core/Networking/APIConstants.swift

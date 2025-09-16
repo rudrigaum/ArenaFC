@@ -46,5 +46,5 @@ profile.dSYM
 *.mobileprovision
 
 # Secrets
-/Configs/*.xcconfig
-!Configs/Secrets.xcconfig.example
+/ArenaFC/Configs/Debug.xcconfig
+/ArenaFC/Configs/Release.xcconfig

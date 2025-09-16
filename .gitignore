@@ -46,5 +46,4 @@ profile.dSYM
 *.mobileprovision
 
 # Secrets
-# Este arquivo contém a chave da API e NUNCA deve ser enviado para o GitHub.
 ArenaFC/Core/Networking/APIConstants.swift

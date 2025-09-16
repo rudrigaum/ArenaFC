@@ -32,8 +32,8 @@ struct Country: Decodable, Equatable {
 
 struct Season: Decodable, Equatable {
     let year: Int
-    let startDate: String
-    let endDate: String
+    let startDate: String?
+    let endDate: String?
     let current: Bool
 
     enum CodingKeys: String, CodingKey {

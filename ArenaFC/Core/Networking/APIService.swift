@@ -26,11 +26,9 @@ final class APIService: APIServiceProtocol {
         guard let url = components.url else {
             throw NetworkError.invalidURL
         }
-
+        
         var request = URLRequest(url: url)
-        guard let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String else {
-            throw NetworkError.invalidURL
-        }
+        let apiKey = APIConstants.apiKey 
         request.addValue(apiKey, forHTTPHeaderField: "x-apisports-key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 

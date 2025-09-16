@@ -29,22 +29,9 @@
 		18B15A4A2E7844B50023B0B3 /* ArenaFCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArenaFCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		181056E12E7898D400911887 /* Exceptions for "ArenaFC" folder in "ArenaFC" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Supporting Files/Info.plist",
-			);
-			target = 18B15A302E7844B30023B0B3 /* ArenaFC */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		18B15A332E7844B30023B0B3 /* ArenaFC */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				181056E12E7898D400911887 /* Exceptions for "ArenaFC" folder in "ArenaFC" target */,
-			);
 			path = ArenaFC;
 			sourceTree = "<group>";
 		};

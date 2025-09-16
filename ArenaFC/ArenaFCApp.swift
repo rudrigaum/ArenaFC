@@ -25,7 +25,7 @@ struct ArenaFCApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LeaguesView()
         }
         .modelContainer(sharedModelContainer)
     }

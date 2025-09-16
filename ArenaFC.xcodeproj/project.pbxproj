@@ -235,6 +235,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		18B15A5D2E7850090023B0B3 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -249,7 +250,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, skipping...\"\nfi\n";
+			shellScript = "if [ -f \"$SWIFTLINT_PATH\" ]; then\n  \"$SWIFTLINT_PATH\" lint --disable-rules trailing_whitespace,line_length --enable-rules empty_count,force_unwrapping,explicit_init,closure_spacing,private_outlet \"${SRCROOT}\"\nelse\n  echo \"warning: SwiftLint not found at '$SWIFTLINT_PATH'. Please check your Homebrew installation.\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

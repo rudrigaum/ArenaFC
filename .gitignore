@@ -45,4 +45,5 @@ xcuserdata
 profile.dSYM
 *.mobileprovision
 
-# End of https://www.toptal.com/developers/gitignore/api/swift,xcode
+# Secrets
+ArenaFC/Core/Networking/APIConstants.swift

@@ -12,7 +12,7 @@ import SwiftData
 struct ArenaFCApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Item.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +25,7 @@ struct ArenaFCApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LeaguesView()
         }
         .modelContainer(sharedModelContainer)
     }

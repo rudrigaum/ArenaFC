@@ -2,26 +2,16 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=swift,xcode
 
 ### Swift ###
-# Standard Swift project files
 .build/
 Packages/
 *.xcodeproj
 xcuserdata/
 
 # Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# .build/checkouts
-#
-# Add this line if you want to avoid checking in resolved dependency versions.
-# Package.resolved
+.build/checkouts
+Package.resolved
 
 ### Xcode ###
-# Xcode
-#
-# gitignore contributors: remember to keep this file compatible with Xcode.
-#
-# Swift-specific
 .swiftpm/
 
 ## User-specific
@@ -45,5 +35,9 @@ xcuserdata
 profile.dSYM
 *.mobileprovision
 
+# End of https://www.toptal.com/developers/gitignore/api/swift,xcode
+
 # Secrets
-ArenaFC/Core/Networking/APIConstants.swift
+# Ignora os arquivos de configuração que contêm as chaves secretas.
+ArenaFC/Configs/Debug.xcconfig
+ArenaFC/Configs/Release.xcconfig

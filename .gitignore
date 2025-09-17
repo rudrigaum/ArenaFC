@@ -1,0 +1,43 @@
+# Created by https://www.toptal.com/developers/gitignore/api/swift,xcode
+# Edit at https://www.toptal.com/developers/gitignore?templates=swift,xcode
+
+### Swift ###
+.build/
+Packages/
+*.xcodeproj
+xcuserdata/
+
+# Swift Package Manager
+.build/checkouts
+Package.resolved
+
+### Xcode ###
+.swiftpm/
+
+## User-specific
+*.xcuserdatad
+*.xcschememanagement
+*.xpcproxy
+private/
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+
+## Other
+*.app
+*.app.dSYM.zip
+*.dSYM
+*.xcscheme
+xcuserdata
+profile.dSYM
+*.mobileprovision
+
+# End of https://www.toptal.com/developers/gitignore/api/swift,xcode
+
+# Secrets
+# Ignora os arquivos de configuração que contêm as chaves secretas.
+ArenaFC/Configs/Debug.xcconfig
+ArenaFC/Configs/Release.xcconfig

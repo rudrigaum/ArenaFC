@@ -9,6 +9,7 @@ import Foundation
 
 enum NetworkError: Error, CustomStringConvertible {
     case invalidURL
+    case apiKeyNotFound
     case requestFailed(Error)
     case invalidResponse
     case serverError(statusCode: Int)
@@ -18,6 +19,8 @@ enum NetworkError: Error, CustomStringConvertible {
         switch self {
         case .invalidURL:
             return "The provided URL is invalid."
+        case .apiKeyNotFound: 
+            return "API Key not found in Info.plist. Please check your configuration."
         case .requestFailed(let error):
             return "The request failed. Original error: \(error.localizedDescription)"
         case .invalidResponse:

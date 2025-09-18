@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		18BE03D32E7AD5A900036073 /* Exceptions for "ArenaFC" folder in "ArenaFC" target */ = {
+		18C06E7B2E7C09770044275E /* Exceptions for "ArenaFC" folder in "ArenaFC" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -43,7 +43,7 @@
 		18B15A332E7844B30023B0B3 /* ArenaFC */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				18BE03D32E7AD5A900036073 /* Exceptions for "ArenaFC" folder in "ArenaFC" target */,
+				18C06E7B2E7C09770044275E /* Exceptions for "ArenaFC" folder in "ArenaFC" target */,
 			);
 			path = ArenaFC;
 			sourceTree = "<group>";

@@ -28,11 +28,16 @@ final class APIService: APIServiceProtocol {
         }
         
         var request = URLRequest(url: url)
-        let apiKey = APIConstants.apiKey 
+        
+        guard let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String, !apiKey.isEmpty else {
+            throw NetworkError.apiKeyNotFound
+        }
+        
         request.addValue(apiKey, forHTTPHeaderField: "x-apisports-key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let (data, response) = try await session.data(for: request)
+        
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidResponse
         }

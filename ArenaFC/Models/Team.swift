@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Team: Decodable, Identifiable, Equatable {
+struct Team: Decodable, Identifiable, Equatable, Hashable {
     let id: Int
     let name: String
     let logo: URL

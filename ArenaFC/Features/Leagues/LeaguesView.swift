@@ -12,7 +12,7 @@ struct LeaguesView: View {
     @StateObject private var viewModel = LeaguesViewModel()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Group {
                 if viewModel.isLoading {
                     ProgressView("Loading Leagues...")
@@ -22,21 +22,27 @@ struct LeaguesView: View {
                         .padding()
                 } else {
                     List(viewModel.leagues) { league in
-                        HStack(spacing: 16) {
-                            AsyncImage(url: league.logo) { image in
-                                image.resizable()
-                            } placeholder: {
-                                ProgressView()
+                        NavigationLink(value: league) {
+                            HStack(spacing: 16) {
+                                AsyncImage(url: league.logo) { image in
+                                    image.resizable()
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .frame(width: 40, height: 40)
+                                
+                                Text(league.name)
+                                    .font(.headline)
                             }
-                            .frame(width: 40, height: 40)
-                            
-                            Text(league.name)
-                                .font(.headline)
                         }
                     }
                 }
             }
-            .navigationTitle("Leagues")
+            .navigationTitle("Leagues") //
+            .navigationDestination(for: League.self) { league in
+                Text("Standings for \(league.name)")
+                    .navigationTitle(league.name)
+            }
             .task {
                 await viewModel.fetchLeagues()
             }

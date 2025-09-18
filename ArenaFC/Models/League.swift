@@ -17,7 +17,7 @@ struct LeagueWrapper: Decodable {
     let seasons: [Season]
 }
 
-struct League: Decodable, Identifiable, Equatable {
+struct League: Decodable, Identifiable, Equatable, Hashable {
     let id: Int
     let name: String
     let type: String?

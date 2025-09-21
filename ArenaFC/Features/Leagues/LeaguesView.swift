@@ -8,9 +8,14 @@
 import Foundation
 import SwiftUI
 
+struct LeagueNavigationData: Hashable {
+    let league: League
+    let seasonYear: Int
+}
+
 struct LeaguesView: View {
     @StateObject private var viewModel = LeaguesViewModel()
-
+    
     var body: some View {
         NavigationStack {
             Group {
@@ -22,26 +27,33 @@ struct LeaguesView: View {
                         .padding()
                 } else {
                     List(viewModel.leagues) { league in
-                        NavigationLink(value: league) {
-                            HStack(spacing: 16) {
-                                AsyncImage(url: league.logo) { image in
-                                    image.resizable()
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                                .frame(width: 40, height: 40)
-                                
-                                Text(league.name)
-                                    .font(.headline)
+                        let cellView = HStack(spacing: 16) {
+                            AsyncImage(url: league.logo) { image in
+                                image.resizable()
+                            } placeholder: {
+                                ProgressView()
                             }
+                            .frame(width: 40, height: 40)
+                            
+                            Text(league.name)
+                                .font(.headline)
+                        }
+                        if let seasonYear = viewModel.findCurrentSeasonYear(for: league) {
+                            let navigationData = LeagueNavigationData(league: league, seasonYear: seasonYear)
+                            NavigationLink(value: navigationData) {
+                                cellView
+                            }
+                        } else {
+                            cellView
+                                .foregroundColor(.gray)
                         }
                     }
                 }
             }
-            .navigationTitle("Leagues") //
-            .navigationDestination(for: League.self) { league in
-                Text("Standings for \(league.name)")
-                    .navigationTitle(league.name)
+            .navigationTitle("Leagues")
+            .navigationDestination(for: LeagueNavigationData.self) { data in
+                Text("Standings for \(data.league.name) - Season \(data.seasonYear)")
+                    .navigationTitle(data.league.name)
             }
             .task {
                 await viewModel.fetchLeagues()

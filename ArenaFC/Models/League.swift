@@ -36,6 +36,21 @@ struct Season: Decodable, Equatable, Hashable, Identifiable {
     let endDate: String?
     let current: Bool
     var id: Int { year }
+    
+    var seasonDisplay: String {
+           guard let startDate = startDate, let endDate = endDate else {
+               return String(year)
+           }
+           
+           let startYear = String(startDate.prefix(4))
+           let endYear = String(endDate.prefix(4))
+
+           if startYear != endYear {
+               return "\(startYear)/\(endYear.suffix(2))"
+           } else {
+               return startYear
+           }
+       }
 
     enum CodingKeys: String, CodingKey {
         case year

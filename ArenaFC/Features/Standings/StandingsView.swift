@@ -38,7 +38,7 @@ struct StandingsView: View {
             Section {
                 Picker("Season", selection: $viewModel.selectedSeasonYear) {
                     ForEach(viewModel.availableSeasons) { season in
-                        Text(String(season.year)).tag(season.year)
+                        Text(season.seasonDisplay).tag(season.year)
                     }
                 }
                 .pickerStyle(.menu)

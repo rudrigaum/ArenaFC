@@ -8,11 +8,17 @@
 import Foundation
 import SwiftUI
 
+struct LeagueNavigationData: Hashable {
+    let league: League
+    let currentSeasonYear: Int
+    let availableSeasons: [Season]
+}
+
 struct LeaguesView: View {
     @StateObject private var viewModel = LeaguesViewModel()
-
+    
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Group {
                 if viewModel.isLoading {
                     ProgressView("Loading Leagues...")
@@ -22,7 +28,7 @@ struct LeaguesView: View {
                         .padding()
                 } else {
                     List(viewModel.leagues) { league in
-                        HStack(spacing: 16) {
+                        let cellView = HStack(spacing: 16) {
                             AsyncImage(url: league.logo) { image in
                                 image.resizable()
                             } placeholder: {
@@ -33,10 +39,21 @@ struct LeaguesView: View {
                             Text(league.name)
                                 .font(.headline)
                         }
+                        if let navigationData = viewModel.navigationData(for: league) {
+                            NavigationLink(value: navigationData) {
+                                cellView
+                            }
+                        } else {
+                            cellView
+                                .foregroundColor(.gray)
+                        }
                     }
                 }
             }
             .navigationTitle("Leagues")
+            .navigationDestination(for: LeagueNavigationData.self) { data in
+                StandingsView(data: data)
+            }
             .task {
                 await viewModel.fetchLeagues()
             }

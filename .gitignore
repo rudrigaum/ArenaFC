@@ -38,6 +38,5 @@ profile.dSYM
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode
 
 # Secrets
-# Ignora os arquivos de configuração que contêm as chaves secretas.
 ArenaFC/Configs/Debug.xcconfig
 ArenaFC/Configs/Release.xcconfig

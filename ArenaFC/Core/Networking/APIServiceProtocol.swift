@@ -8,7 +8,6 @@
 import Foundation
 
 protocol APIServiceProtocol {
-
     func fetchLeagues() async throws -> [LeagueWrapper]
-
+    func fetchStandings(for leagueId: Int, season: Int) async throws -> [Standing]
 }

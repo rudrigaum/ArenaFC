@@ -52,8 +52,7 @@ struct LeaguesView: View {
             }
             .navigationTitle("Leagues")
             .navigationDestination(for: LeagueNavigationData.self) { data in
-                Text("Standings for \(data.league.name) - Season \(data.currentSeasonYear)")
-                    .navigationTitle(data.league.name)
+                StandingsView(data: data)
             }
             .task {
                 await viewModel.fetchLeagues()

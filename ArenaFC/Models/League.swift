@@ -30,11 +30,12 @@ struct Country: Decodable, Equatable {
     let flag: URL?
 }
 
-struct Season: Decodable, Equatable, Hashable {
+struct Season: Decodable, Equatable, Hashable, Identifiable {
     let year: Int
     let startDate: String?
     let endDate: String?
     let current: Bool
+    var id: Int { year }
 
     enum CodingKeys: String, CodingKey {
         case year

@@ -41,13 +41,15 @@ final class LeaguesViewModel: ObservableObject {
         }
     }
     
-    func findCurrentSeasonYear(for league: League) -> Int? {
-        guard let wrapper = leagueWrappers.first(where: { $0.league.id == league.id }) else {
+    func navigationData(for league: League) -> LeagueNavigationData? {
+        guard let wrapper = leagueWrappers.first(where: { $0.league.id == league.id }),
+              !wrapper.seasons.isEmpty else {
             return nil
         }
         
-        let latestSeason = wrapper.seasons.sorted { $0.year > $1.year }.first
-        return latestSeason?.year
+        let sortedSeasons = wrapper.seasons.sorted { $0.year > $1.year }
+        guard let latestSeason = sortedSeasons.first else { return nil }
+        return LeagueNavigationData(league: league, currentSeasonYear: latestSeason.year, availableSeasons: sortedSeasons)
     }
     
 }

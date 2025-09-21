@@ -9,16 +9,20 @@ import Foundation
 
 @MainActor
 final class StandingsViewModel: ObservableObject {
-
+    
     @Published var standings: [Standing] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
+    @Published var selectedSeasonYear: Int
 
     let league: League
+    let availableSeasons: [Season]
     private let service: APIServiceProtocol
 
-    init(league: League, service: APIServiceProtocol = APIService()) {
-        self.league = league
+    init(data: LeagueNavigationData, service: APIServiceProtocol = APIService()) {
+        self.league = data.league
+        self.availableSeasons = data.availableSeasons
+        self.selectedSeasonYear = data.currentSeasonYear
         self.service = service
     }
 
@@ -31,8 +35,7 @@ final class StandingsViewModel: ObservableObject {
         }
 
         do {
-            let seasonYear = 2024
-            let fetchedStandings = try await service.fetchStandings(for: league.id, season: seasonYear)
+            let fetchedStandings = try await service.fetchStandings(for: league.id, season: selectedSeasonYear)
             self.standings = fetchedStandings
         } catch let error as NetworkError {
             self.errorMessage = error.description

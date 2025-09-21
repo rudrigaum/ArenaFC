@@ -30,7 +30,7 @@ struct Country: Decodable, Equatable {
     let flag: URL?
 }
 
-struct Season: Decodable, Equatable {
+struct Season: Decodable, Equatable, Hashable {
     let year: Int
     let startDate: String?
     let endDate: String?

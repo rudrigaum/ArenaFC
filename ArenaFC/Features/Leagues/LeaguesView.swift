@@ -10,7 +10,8 @@ import SwiftUI
 
 struct LeagueNavigationData: Hashable {
     let league: League
-    let seasonYear: Int
+    let currentSeasonYear: Int
+    let availableSeasons: [Season]
 }
 
 struct LeaguesView: View {
@@ -38,8 +39,7 @@ struct LeaguesView: View {
                             Text(league.name)
                                 .font(.headline)
                         }
-                        if let seasonYear = viewModel.findCurrentSeasonYear(for: league) {
-                            let navigationData = LeagueNavigationData(league: league, seasonYear: seasonYear)
+                        if let navigationData = viewModel.navigationData(for: league) {
                             NavigationLink(value: navigationData) {
                                 cellView
                             }
@@ -52,7 +52,7 @@ struct LeaguesView: View {
             }
             .navigationTitle("Leagues")
             .navigationDestination(for: LeagueNavigationData.self) { data in
-                Text("Standings for \(data.league.name) - Season \(data.seasonYear)")
+                Text("Standings for \(data.league.name) - Season \(data.currentSeasonYear)")
                     .navigationTitle(data.league.name)
             }
             .task {

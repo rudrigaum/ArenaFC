@@ -11,8 +11,8 @@ import SwiftUI
 struct TeamDetailsView: View {
     @StateObject private var viewModel: TeamDetailsViewModel
     
-    init(teamId: Int) {
-        _viewModel = StateObject(wrappedValue: TeamDetailsViewModel(teamId: teamId))
+    init(teamId: Int, seasonYear: Int) {
+        _viewModel = StateObject(wrappedValue: TeamDetailsViewModel(teamId: teamId, seasonYear: seasonYear))
     }
     
     var body: some View {

@@ -48,9 +48,14 @@ struct StandingsView: View {
                 StandingsHeaderView()
                 
                 ForEach(viewModel.standings) { standing in
-                    StandingsRowView(standing: standing)
+                    NavigationLink(value: standing.team) {
+                        StandingsRowView(standing: standing)
+                    }
                 }
             }
+        }
+        .navigationDestination(for: Team.self) { team in
+            TeamDetailsView(teamId: team.id)
         }
         .onChange(of: viewModel.selectedSeasonYear) {
             Task {

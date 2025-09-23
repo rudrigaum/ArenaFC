@@ -13,7 +13,7 @@ struct APIResponseTeams: Decodable {
 
 struct TeamDetailsWrapper: Decodable {
     let team: Team
-    let venue: Venue
+    let venue: Venue?
 }
 
 struct Team: Decodable, Identifiable, Equatable, Hashable {

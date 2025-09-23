@@ -39,6 +39,16 @@ final class APIService: APIServiceProtocol {
         return apiResponse.response.first
     }
     
+    func fetchPlayers(for teamId: Int, season: Int) async throws -> [PlayerResponseWrapper] {
+        let queryItems = [
+            URLQueryItem(name: "team", value: String(teamId)),
+            URLQueryItem(name: "season", value: String(season))
+        ]
+        
+        let apiResponse: APIResponsePlayers = try await request(path: "/players", queryItems: queryItems)
+        return apiResponse.response
+    }
+    
     private func request<T: Decodable>(path: String, queryItems: [URLQueryItem]? = nil) async throws -> T {
         var components = URLComponents()
         components.scheme = "https"

@@ -52,16 +52,17 @@ final class TeamDetailsViewModel: ObservableObject {
     
     private func fetchPlayers() async {
         isLoadingPlayers = true
-        defer { isLoadingPlayers = false }
         
+        defer {
+            isLoadingPlayers = false
+        }
+
         do {
             let playerWrappers = try await service.fetchPlayers(for: teamId, season: seasonYear)
             self.players = playerWrappers.map { $0.player }
         } catch let error as NetworkError {
-            print("Could not load players: \(error.description)")
             self.errorMessage = error.description
         } catch {
-            print("Could not load players: \(error.localizedDescription)")
             self.errorMessage = error.localizedDescription
         }
     }

@@ -30,7 +30,6 @@ struct TeamDetailsView: View {
         .task {
             await viewModel.fetchDetails()
         }
-        .navigationTitle(viewModel.teamDetails?.team.name ?? "Details")
     }
     
     private func contentView(for details: TeamDetailsWrapper) -> some View {
@@ -41,6 +40,8 @@ struct TeamDetailsView: View {
                 if let venue = details.venue {
                     venueView(for: venue)
                 }
+                
+                playerRosterView()
                 
                 Spacer()
             }
@@ -90,5 +91,61 @@ struct TeamDetailsView: View {
             Text("Stadium Information")
                 .font(.headline)
         }
+    }
+    
+    private func playerRosterView() -> some View {
+        Section {
+            if viewModel.isLoadingPlayers {
+                ProgressView()
+            } else if viewModel.players.isEmpty {
+                Text("Player roster not available for this season.")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            } else {
+                LazyVStack(alignment: .leading) {
+                    ForEach(viewModel.players) { player in
+                        PlayerRowView(player: player)
+                        Divider()
+                    }
+                }
+            }
+        } header: {
+            Text("Player Roster")
+                .font(.title2.bold())
+                .padding(.bottom, 8)
+        }
+    }
+}
+
+private struct PlayerRowView: View {
+    let player: Player
+    
+    var body: some View {
+        HStack(spacing: 16) {
+            AsyncImage(url: player.photo) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .clipShape(Circle())
+            } placeholder: {
+                Image(systemName: "person.circle.fill")
+                    .resizable()
+                    .foregroundColor(.secondary.opacity(0.4))
+            }
+            .frame(width: 50, height: 50)
+            
+            VStack(alignment: .leading) {
+                Text(player.name ?? "Unknown Player")
+                    .font(.headline)
+                
+                let ageString = player.age.map { "Age: \($0)" } ?? "N/A"
+                let nationalityString = player.nationality ?? "Unknown"
+                Text("\(ageString) - \(nationalityString)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            Spacer()
+        }
+        .padding(.vertical, 8)
     }
 }

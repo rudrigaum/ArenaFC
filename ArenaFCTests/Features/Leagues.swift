@@ -42,4 +42,16 @@ final class LeaguesViewModelTests: XCTestCase {
         XCTAssertEqual(sut.leagues.first?.name, "Premier League", "The league name should match the mock data")
         XCTAssertNil(sut.errorMessage, "Error message should be nil on a successful fetch")
     }
+    
+    func test_fetchLeagues_whenAPIReturnsFailure_shouldUpdateErrorMessage() async {
+        let expectedError = NetworkError.serverError(statusCode: 500)
+        mockAPIService.leaguesResult = .failure(expectedError)
+        
+        await sut.fetchLeagues()
+        
+        XCTAssertFalse(sut.isLoading, "isLoading should be false after fetch completes")
+        XCTAssertTrue(sut.leagues.isEmpty, "Leagues array should remain empty on failure")
+        XCTAssertNotNil(sut.errorMessage, "Error message should not be nil on failure")
+        XCTAssertEqual(sut.errorMessage, expectedError.description, "Error message should match the simulated error description")
+    }
 }

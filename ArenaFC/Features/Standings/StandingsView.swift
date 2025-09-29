@@ -55,7 +55,7 @@ struct StandingsView: View {
             }
         }
         .navigationDestination(for: Team.self) { team in
-            TeamDetailsView(teamId: team.id)
+            TeamDetailsView(teamId: team.id, seasonYear: viewModel.selectedSeasonYear)
         }
         .onChange(of: viewModel.selectedSeasonYear) {
             Task {

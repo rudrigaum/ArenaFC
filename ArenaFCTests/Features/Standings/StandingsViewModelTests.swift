@@ -48,4 +48,16 @@ final class StandingsViewModelTests: XCTestCase {
         XCTAssertEqual(sut.standings.first?.team.name, "Test FC")
         XCTAssertNil(sut.errorMessage, "Error message should be nil on success")
     }
+    
+    func test_fetchStandings_whenFailure_shouldUpdateErrorMessage() async {
+            let expectedError = NetworkError.invalidResponse
+            mockAPIService.standingsResult = .failure(expectedError)
+            
+            await sut.fetchStandings()
+            
+            XCTAssertFalse(sut.isLoading, "isLoading should be false after fetch completes")
+            XCTAssertTrue(sut.standings.isEmpty, "Standings array should be empty on failure")
+            XCTAssertNotNil(sut.errorMessage, "Error message should not be nil on failure")
+            XCTAssertEqual(sut.errorMessage, expectedError.description, "Error message should match the simulated error")
+        }
 }

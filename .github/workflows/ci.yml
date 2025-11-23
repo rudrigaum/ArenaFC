@@ -16,7 +16,7 @@ jobs:
       - name: Select Xcode 16.0
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16.0'
+          xcode-version: '15.4'
 
       - name: List available simulators
         run: xcrun simctl list devices available
@@ -25,5 +25,5 @@ jobs:
         run: |
           xcodebuild test \
             -scheme ArenaFC \
-            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=15.5' \
             -enableCodeCoverage YES
